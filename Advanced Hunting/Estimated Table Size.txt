@@ -1,0 +1,65 @@
+
+
+// All Tables
+union withsource = TableName *
+| summarize totalTableEntries = count(), TableSizeInGB = sum(estimate_data_size(*))/1000/1000/1000., TableSizeInMB = sum(estimate_data_size(*))/1000/1000. by TableName
+
+DeviceFileEvents
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceInfo
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceNetworkInfo
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceProcessEvents
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceImageLoadEvents
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceRegistryEvents
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceImageLoadEvents
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceFileCertificateInfo
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceLogonEvents
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceEvents
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+CloudAppEvents
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+AlertEvidence
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+IdentityLogonEvents
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+IdentityQueryEvents
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+IdentityDirectoryEvents
+| project size = estimate_data_size(*)
+| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
