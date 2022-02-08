@@ -4,6 +4,12 @@
 union withsource = TableName *
 | summarize totalTableEntries = count(), TableSizeInGB = sum(estimate_data_size(*))/1000/1000/1000., TableSizeInMB = sum(estimate_data_size(*))/1000/1000. by TableName
 
+//All Tables with Estimated Sentinel Price Ingestion
+let Price = 3.0;
+union withsource = TableName *
+| summarize totalTableEntries = count(), TableSizeInGB = sum(estimate_data_size(*))/1000/1000/1000., TableSizeInMB = sum(estimate_data_size(*))/1000/1000., estimatedSentinelprice = round(sum(estimate_data_size(*)) / (1000 * 1000 * 1000.) * Price, 2)
+by TableName
+
 DeviceFileEvents
 | project size = estimate_data_size(*)
 | summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
