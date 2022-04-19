@@ -4,68 +4,104 @@
 union withsource = TableName *
 | summarize totalTableEntries = count(), TableSizeInGB = sum(estimate_data_size(*))/1000/1000/1000., TableSizeInMB = sum(estimate_data_size(*))/1000/1000. by TableName
 
-//All Tables with Estimated Sentinel Price Ingestion
+//All Tables with Estimated Sentinel Price Ingestion. Update your price from the Azure Pricing Calculator. Price = Sentinel + Log Analytics Ingestion
 let Price = 3.0;
 union withsource = TableName *
 | summarize totalTableEntries = count(), TableSizeInGB = sum(estimate_data_size(*))/1000/1000/1000., TableSizeInMB = sum(estimate_data_size(*))/1000/1000., estimatedSentinelprice = round(sum(estimate_data_size(*)) / (1000 * 1000 * 1000.) * Price, 2)
 by TableName
 
-DeviceFileEvents
+AlertInfo
 | project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
-
-DeviceInfo
-| project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
-
-DeviceNetworkInfo
-| project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
-
-DeviceProcessEvents
-| project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
-
-DeviceImageLoadEvents
-| project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
-
-DeviceRegistryEvents
-| project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
-
-DeviceImageLoadEvents
-| project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
-
-DeviceFileCertificateInfo
-| project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
-
-DeviceLogonEvents
-| project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
-
-DeviceEvents
-| project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
-
-CloudAppEvents
-| project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
 
 AlertEvidence
 | project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
 
-IdentityLogonEvents
+AADSignInEventsBeta
 | project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
 
-IdentityQueryEvents
+AADSpnSignInEventsBeta
 | project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
 
-IdentityDirectoryEvents
+CloudAppEvents
 | project size = estimate_data_size(*)
-| summarize TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceEvents
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceFileCertificateInfo
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceFileEvents
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceImageLoadEvents
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceInfo
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceLogonEvents
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceNetworkEvents
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceNetworkInfo
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceProcessEvents
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceRegistryEvents
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceTvmSecureConfigurationAssessment
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceTvmSecureConfigurationAssessmentKB
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceTvmSoftwareEvidenceBeta
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceTvmSoftwareInventory
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceTvmSoftwareVulnerabilities
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+DeviceTvmSoftwareVulnerabilitiesKB
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+EmailEvents
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+EmailUrlInfo
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
+
+IdentityInfo
+| project size = estimate_data_size(*)
+| summarize totalTableEntries = count(), TableSizeInGB = sum(size)/1000/1000/1000., TableSizeInMB = sum(size)/1000/1000.
